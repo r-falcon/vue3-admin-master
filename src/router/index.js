@@ -45,7 +45,7 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: '/:pathMatch(.*)*',
     component: () => import('@/views/error/404'),
     hidden: true
   },
@@ -63,7 +63,7 @@ export const constantRoutes = [
         path: '/index',
         component: () => import('@/views/index'),
         name: 'Index',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: '', affix: true }
       }
     ]
   },
@@ -146,7 +146,7 @@ export const constantRoutes = [
       }
     ]
   }
-];
+]
 
 const router = createRouter({
   history: createWebHistory(),
@@ -157,7 +157,7 @@ const router = createRouter({
     } else {
       return { top: 0 }
     }
-  },
-});
+  }
+})
 
-export default router;
+export default router

@@ -58,7 +58,165 @@ const permission = {
         var res = {
           code: 200,
           msg: '获取动态路由成功',
-          data: []
+          data: [
+            // 用户管理
+            {
+              name: 'User',
+              path: '/user',
+              redirect: 'noRedirect',
+              component: 'Layout',
+              meta: {
+                title: '用户管理',
+                icon: ''
+              },
+              children: [
+                {
+                  name: 'Ulist',
+                  path: 'ulist',
+                  redirect: null,
+                  component: 'User/index',
+                  hidden: false,
+                  meta: {
+                    title: '用户列表',
+                    icon: ''
+                  }
+                }
+              ]
+            },
+
+            // 权限管理
+            {
+              name: 'Rights',
+              path: '/rights',
+              redirect: 'noRedirect',
+              component: 'Layout',
+              meta: {
+                title: '权限管理',
+                icon: ''
+              },
+              children: [
+                {
+                  name: 'Rlist',
+                  path: 'rlist',
+                  redirect: null,
+                  component: 'Rights/index',
+                  hidden: false,
+                  meta: {
+                    title: '权限列表',
+                    icon: ''
+                  }
+                },
+                {
+                  name: 'Role',
+                  path: 'role',
+                  redirect: null,
+                  component: 'Rights/role',
+                  hidden: false,
+                  meta: {
+                    title: '角色列表',
+                    icon: ''
+                  }
+                }
+              ]
+            },
+
+            // 商品管理
+            {
+              name: 'Goods',
+              path: '/goods',
+              redirect: 'noRedirect',
+              component: 'Layout',
+              meta: {
+                title: '商品管理',
+                icon: ''
+              },
+              children: [
+                {
+                  name: 'Glist',
+                  path: 'glist',
+                  redirect: null,
+                  component: 'Goods/index',
+                  hidden: false,
+                  meta: {
+                    title: '商品列表',
+                    icon: ''
+                  }
+                },
+                {
+                  name: 'Params',
+                  path: 'params',
+                  redirect: null,
+                  component: 'Goods/params',
+                  hidden: false,
+                  meta: {
+                    title: '分类参数',
+                    icon: ''
+                  }
+                },
+                {
+                  name: 'Gadd',
+                  path: 'gadd',
+                  redirect: null,
+                  component: 'Goods/itemAdd',
+                  hidden: true,
+                  meta: {
+                    title: '商品操作',
+                    icon: ''
+                  }
+                }
+              ]
+            },
+
+            // 订单管理
+            {
+              name: 'Order',
+              path: '/order',
+              redirect: 'noRedirect',
+              component: 'Layout',
+              meta: {
+                title: '订单管理',
+                icon: ''
+              },
+              children: [
+                {
+                  name: 'Olist',
+                  path: 'olist',
+                  redirect: null,
+                  component: 'Order/index',
+                  hidden: false,
+                  meta: {
+                    title: '订单列表',
+                    icon: ''
+                  }
+                }
+              ]
+            },
+
+            // 订单管理
+            {
+              name: 'Chart',
+              path: '/chart',
+              redirect: 'noRedirect',
+              component: 'Layout',
+              meta: {
+                title: '数据统计',
+                icon: ''
+              },
+              children: [
+                {
+                  name: 'Achart',
+                  path: 'achart',
+                  redirect: null,
+                  component: 'Chart/index',
+                  hidden: false,
+                  meta: {
+                    title: '统计报表',
+                    icon: ''
+                  }
+                }
+              ]
+            }
+          ]
           // data: [
           //   {
           //     name: 'System',
