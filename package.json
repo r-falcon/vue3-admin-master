@@ -37,7 +37,8 @@
     "vue": "3.2.26",
     "vue-cropper": "1.0.2",
     "vue-router": "4.0.12",
-    "vuex": "4.0.2"
+    "vuex": "4.0.2",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",
@@ -51,7 +52,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.3.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.2.2",
+    "lint-staged": "^11.1.4",
     "prettier": "^2.5.1",
     "sass": "1.45.0",
     "unplugin-auto-import": "0.5.3",

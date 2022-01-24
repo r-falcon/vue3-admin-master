@@ -228,3 +228,5 @@ remove the file manually to continue.
 
 - 找到.git/index.lock 文件，直接删除即可
 - 执行 git 命令`git clean -f .git/index.lock`
+
+`修改readme.md文件`
