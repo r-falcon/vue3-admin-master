@@ -199,3 +199,32 @@ QQ 群： [![加入QQ群](https://img.shields.io/badge/已满-937441-blue.svg)](
 - 设置`pre-commit`钩子，提交 message 执行校验 `npx husky add .husky/commit-msg "yarn commitlint"`
 
 bug:set-script 是 npm7 后的命令，首先将自己的 npm6 升 7 `npm install --global npm`
+
+### git commit 提交时报错
+
+- 卸载 husky。只要把项目的 package.json 文件中 devDependencies 节点下的 husky 库删掉，然后重新 npm i 一次即可。或者直接在项目根目录下执行 npm uninstall husky --save 也可以，再次提交，自动化测试功能就屏蔽掉
+- 进入项目的.git 文件夹(文件夹默认隐藏,可先设置显示或者命令 ls 查找),再进入 hooks 文件夹,删除 pre-commit 文件,重新 git commit -m 'xxx' git push 即可。
+- 将 git commit -m "XXX" 改为 git commit --no-verify -m "XXX"
+
+### linux 文本编辑器常用命令
+
+- vim 进入编辑器
+- a,o,i 进入编辑，按键 esc 退出
+- q<enter>退出； wq<enter>保存退出；q!<enter>强制退出； wq!<enter>强制保存退出
+
+### bug 处理
+
+```js
+fatal: Unable to create 'F:/React/umi/vue3-admin-master/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+```
+
+解决：
+
+- 找到.git/index.lock 文件，直接删除即可
+- 执行 git 命令`git clean -f .git/index.lock`
