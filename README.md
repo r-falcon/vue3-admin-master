@@ -130,3 +130,72 @@ QQ 群： [![加入QQ群](https://img.shields.io/badge/已满-937441-blue.svg)](
 - eslint-plugin-vue：ESLint 的插件，增加 Vue 的检测能力 `yarn add eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-vue -D`
 
 然后在项目根目录下创建两个文件.eslintrc.js 和 prettier.config.js: 然后使用 ctrl+shift+P 调出控制台输入 Reload Window 配置即可生效
+
+### Git 提交约束
+
+- feat：新功能（feature）
+- fix：修补 bug
+- docs：文档（documentation）
+- style：格式（不影响代码运行的变动）
+- refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）
+- perf：提高性能的代码更改
+- test：增加测试
+- build：影响构建系统或外部依赖项的更改(示例范围:gulp、broccoli、npm)
+- ci：对 ci 配置文件和脚本的更改(示例范围:Travis, Circle, BrowserStack, SauceLabs)
+- chore：构建过程或辅助工具的变动
+- revert: 恢复以前的提交(回退)
+
+首先安装一下下面几个包：
+
+- husky：触发 Git Hooks,执行脚本
+- lint-staged：检测文件，只对暂存区中有改动的文件进行检测，可以在提交前进行 Lint 操作
+- commitizen：使用规范化的 message 提交
+- commitlint: 检查 message 是否符合规范
+- cz-conventional-changelog：适配器。提供 conventional-changelog 标准（约定式提交标准）。基于不同需求，也可以使用不同适配器（比如: cz-customizable） `yarn add husky lint-staged commitizen @commitlint/config-conventional @commitlint/cli -D`
+
+配置适配器： yarn `npx commitizen init cz-conventional-changelog --yarn --dev --exact` npm `npx commitizen init cz-conventional-changelog --save-dev --save-exact`
+
+它会在本地项目中配置适配器，然后去安装 cz-conventional-changelog 这个包，最后在 package.json 文件中生成下面代码：
+
+```js
+ "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+```
+
+然后在 package.json 中添加一个脚本
+
+```js
+  "scripts": {
+    "cz": "git cz"
+  }
+```
+
+在 git bash 中执行`yarn cz`命令来编写一些约定好的提交规范,此时我们已经根据约定规范提交了消息，但是我们怎么知道提交的消息是不是正确的呢需要配置刚刚介绍到的 commitlint，只需要一句命令即可完成配置,它会在项目根目录下面创建一个 commitlint.config.js 配置文件: `echo "module.exports = {extends: ['@commitlint/config-conventional']};" > commitlint.config.js` 它会使用@commitlint/config-conventional 这个包里面提供的校验规则进行校验
+
+有了这个校验工具，怎么才可以触发校验呢，我们希望在提交代码的时候就进行校验，这时候 husky 就可以出场了，他可以触发 Git Hook 来执行相应的脚本，而我们只需要把刚刚的校验工具加入脚本就可以了
+
+```js
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint --config commitlint.config.js -e -V"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue,md,json}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+```
+
+接下来就是配置 husky 通过触发 Git Hook 执行脚本：
+
+- 设置脚本`prepare`并且立马执行来安装，此时在根目录下会创建一个`.husky`目录 `npm set-script prepare "husky install" && npm run prepare`
+
+- 设置`pre-commit`钩子，提交前执行校验 `npx husky add .husky/pre-commit "yarn lint-staged"`
+
+- 设置`pre-commit`钩子，提交 message 执行校验 `npx husky add .husky/commit-msg "yarn commitlint"`
+
+bug:set-script 是 npm7 后的命令，首先将自己的 npm6 升 7 `npm install --global npm`
