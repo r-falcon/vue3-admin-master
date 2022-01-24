@@ -58,43 +58,43 @@ const permission = {
         var res = {
           code: 200,
           msg: '获取动态路由成功',
-          data: [
-            // 系统维护
-            {
-              name: 'System',
-              path: '/system',
-              redirect: 'noRedirect',
-              component: 'Layout',
-              meta: {
-                title: '系统维护',
-                icon: 'system'
-              },
-              children: [
-                {
-                  name: 'User',
-                  path: 'user',
-                  redirect: null,
-                  component: 'system/user/index',
-                  hidden: false,
-                  meta: {
-                    title: '用户管理',
-                    icon: 'user'
-                  }
-                },
-                {
-                  name: 'Menu',
-                  path: 'menu',
-                  redirect: null,
-                  component: 'system/menu/index',
-                  hidden: false,
-                  meta: {
-                    title: '菜单管理',
-                    icon: 'table'
-                  }
-                }
-              ]
-            }
-          ]
+          data: []
+          // data: [
+          //   {
+          //     name: 'System',
+          //     path: '/system',
+          //     redirect: 'noRedirect',
+          //     component: 'Layout',
+          //     meta: {
+          //       title: '系统维护',
+          //       icon: 'system'
+          //     },
+          //     children: [
+          //       {
+          //         name: 'User',
+          //         path: 'user',
+          //         redirect: null,
+          //         component: 'system/user/index',
+          //         hidden: false,
+          //         meta: {
+          //           title: '用户管理',
+          //           icon: 'user'
+          //         }
+          //       },
+          //       {
+          //         name: 'Menu',
+          //         path: 'menu',
+          //         redirect: null,
+          //         component: 'system/menu/index',
+          //         hidden: false,
+          //         meta: {
+          //           title: '菜单管理',
+          //           icon: 'table'
+          //         }
+          //       }
+          //     ]
+          //   }
+          // ]
         }
         const accessedRoutes = filterAsyncRouter(res.data)
         // accessedRoutes.push({
