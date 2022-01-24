@@ -25,7 +25,7 @@
           <template #prefix><svg-icon icon-class="password" class="el-input__icon input-icon" /></template>
         </el-input>
       </el-form-item>
-      <el-form-item prop="code" v-if="captchaOnOff">
+      <!-- <el-form-item prop="code" v-if="captchaOnOff">
         <el-input
           v-model="loginForm.code"
           size="large"
@@ -39,7 +39,7 @@
         <div class="login-code">
           <img :src="codeUrl" @click="getCode" class="login-code-img"/>
         </div>
-      </el-form-item>
+      </el-form-item> -->
       <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
       <el-form-item style="width:100%;">
         <el-button
@@ -52,9 +52,9 @@
           <span v-if="!loading">登 录</span>
           <span v-else>登 录 中...</span>
         </el-button>
-        <div style="float: right;" v-if="register">
+        <!-- <div style="float: right;" v-if="register">
           <router-link class="link-type" :to="'/register'">立即注册</router-link>
-        </div>
+        </div> -->
       </el-form-item>
     </el-form>
     <!--  底部  -->
@@ -65,7 +65,7 @@
 </template>
 
 <script setup>
-import { getCodeImg } from "@/api/login";
+// import { getCodeImg } from "@/api/login";
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
 
@@ -75,24 +75,24 @@ const { proxy } = getCurrentInstance();
 
 const loginForm = ref({
   username: "admin",
-  password: "admin123",
+  password: "123456",
   rememberMe: false,
-  code: "",
-  uuid: ""
+  // code: "",
+  // uuid: ""
 });
 
 const loginRules = {
   username: [{ required: true, trigger: "blur", message: "请输入您的账号" }],
   password: [{ required: true, trigger: "blur", message: "请输入您的密码" }],
-  code: [{ required: true, trigger: "change", message: "请输入验证码" }]
+  // code: [{ required: true, trigger: "change", message: "请输入验证码" }]
 };
 
-const codeUrl = ref("");
+// const codeUrl = ref("");
 const loading = ref(false);
 // 验证码开关
-const captchaOnOff = ref(true);
+// const captchaOnOff = ref(true);
 // 注册开关
-const register = ref(false);
+// const register = ref(false);
 const redirect = ref(undefined);
 
 function handleLogin() {
@@ -116,23 +116,23 @@ function handleLogin() {
       }).catch(() => {
         loading.value = false;
         // 重新获取验证码
-        if (captchaOnOff.value) {
-          getCode();
-        }
+        // if (captchaOnOff.value) {
+        //   getCode();
+        // }
       });
     }
   });
 }
 
-function getCode() {
-  getCodeImg().then(res => {
-    captchaOnOff.value = res.captchaOnOff === undefined ? true : res.captchaOnOff;
-    if (captchaOnOff.value) {
-      codeUrl.value = "data:image/gif;base64," + res.img;
-      loginForm.value.uuid = res.uuid;
-    }
-  });
-}
+// function getCode() {
+//   getCodeImg().then(res => {
+//     captchaOnOff.value = res.captchaOnOff === undefined ? true : res.captchaOnOff;
+//     if (captchaOnOff.value) {
+//       codeUrl.value = "data:image/gif;base64," + res.img;
+//       loginForm.value.uuid = res.uuid;
+//     }
+//   });
+// }
 
 function getCookie() {
   const username = Cookies.get("username");
@@ -145,7 +145,7 @@ function getCookie() {
   };
 }
 
-getCode();
+// getCode();
 getCookie();
 </script>
 

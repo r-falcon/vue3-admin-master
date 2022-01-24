@@ -31,7 +31,7 @@ import variables from '@/assets/styles/variables.module.scss'
 const route = useRoute();
 const store = useStore();
 
-const sidebarRouters =  computed(() => store.getters.sidebarRouters);
+const sidebarRouters =  computed(() => store.getters.permission_routes);
 const showLogo = computed(() => store.state.settings.sidebarLogo);
 const sideTheme = computed(() => store.state.settings.sideTheme);
 const theme = computed(() => store.state.settings.theme);

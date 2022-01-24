@@ -1,5 +1,8 @@
 <template>
-  <div class="user-info-head" @click="editCropper()"><img :src="options.img" title="点击上传头像" class="img-circle img-lg" /></div>
+  <div class="user-info-head" @click="editCropper()">
+    <img v-if="user.avatar" :src="user.avatar" class="img-circle img-lg" alt="user avatar" />
+    <img v-else :src="options.img" title="点击上传头像" class="img-circle img-lg" />
+  </div>
   <el-dialog :title="title" v-model="open" width="800px" append-to-body @opened="modalOpened"  @close="closeDialog">
     <el-row>
       <el-col :xs="24" :md="12" :style="{height: '350px'}">
@@ -53,7 +56,8 @@
 <script setup>
 import "vue-cropper/dist/index.css";
 import { VueCropper } from "vue-cropper";
-import { uploadAvatar } from "@/api/system/user";
+// import { uploadAvatar } from "@/api/system/user";
+import {defineProps} from 'vue'
 
 const store = useStore();
 const { proxy } = getCurrentInstance();
@@ -61,6 +65,13 @@ const { proxy } = getCurrentInstance();
 const open = ref(false);
 const visible = ref(false);
 const title = ref("修改头像");
+
+defineProps({
+  user:{
+    type:Object,
+    required:true
+  }
+})
 
 //图片裁剪数据
 const options = reactive({
@@ -111,15 +122,18 @@ function beforeUpload(file) {
 /** 上传图片 */
 function uploadImg() {
   proxy.$refs.cropper.getCropBlob(data => {
-    let formData = new FormData();
-    formData.append("avatarfile", data);
-    uploadAvatar(formData).then(response => {
-      open.value = false;
-      options.img = import.meta.env.VITE_APP_BASE_API + response.imgUrl;
-      store.commit("SET_AVATAR", options.img);
-      proxy.$modal.msgSuccess("修改成功");
-      visible.value = false;
-    });
+    open.value = false 
+    proxy.$modal.msgSuccess('无接口调用,修改成功')
+    // visible.value = false
+    // let formData = new FormData();
+    // formData.append("avatarfile", data);
+    // uploadAvatar(formData).then(response => {
+    //   open.value = false;
+    //   options.img = import.meta.env.VITE_APP_BASE_API + response.imgUrl;
+    //   store.commit("SET_AVATAR", options.img);
+    //   proxy.$modal.msgSuccess("没有调用后台接口,修改成功");
+    //   visible.value = false;
+    // });
   });
 };
 /** 实时预览 */

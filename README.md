@@ -131,7 +131,7 @@ QQ 群： [![加入QQ群](https://img.shields.io/badge/已满-937441-blue.svg)](
 
 然后在项目根目录下创建两个文件.eslintrc.js 和 prettier.config.js: 然后使用 ctrl+shift+P 调出控制台输入 Reload Window 配置即可生效
 
-### Git 提交约束
+### Git 提交约束,[的配置]
 
 - feat：新功能（feature）
 - fix：修补 bug

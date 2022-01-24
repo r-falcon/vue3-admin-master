@@ -6,9 +6,9 @@ import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/auth'
 import { isHttp } from '@/utils/validate'
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ showSpinner: false })
 
-const whiteList = ['/login', '/auth-redirect', '/bind', '/register'];
+const whiteList = ['/login', '/auth-redirect', '/bind', '/register']
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
@@ -21,22 +21,25 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) {
         // 判断当前用户是否已拉取完user_info信息
-        store.dispatch('GetInfo').then(() => {
-          store.dispatch('GenerateRoutes').then(accessRoutes => {
-            // 根据roles权限生成可访问的路由表
-            accessRoutes.forEach(route => {
-              if (!isHttp(route.path)) {
-                router.addRoute(route) // 动态添加可访问路由表
-              }
+        store
+          .dispatch('GetInfo')
+          .then(() => {
+            store.dispatch('GenerateRoutes').then((accessRoutes) => {
+              // 根据roles权限生成可访问的路由表
+              accessRoutes.forEach((route) => {
+                if (!isHttp(route.path)) {
+                  router.addRoute(route) // 动态添加可访问路由表
+                }
+              })
+              next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
             })
-            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
           })
-        }).catch(err => {
-          store.dispatch('LogOut').then(() => {
-            ElMessage.error(err)
-            next({ path: '/' })
+          .catch((err) => {
+            store.dispatch('LogOut').then(() => {
+              ElMessage.error(err)
+              next({ path: '/' })
+            })
           })
-        })
       } else {
         next()
       }
