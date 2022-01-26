@@ -67,7 +67,7 @@ const permission = {
               component: 'Layout',
               meta: {
                 title: '用户管理',
-                icon: ''
+                icon: 'user'
               },
               children: [
                 {
@@ -78,7 +78,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '用户列表',
-                    icon: ''
+                    icon: 'user'
                   }
                 }
               ]
@@ -92,7 +92,7 @@ const permission = {
               component: 'Layout',
               meta: {
                 title: '权限管理',
-                icon: ''
+                icon: 'guide'
               },
               children: [
                 {
@@ -103,7 +103,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '权限列表',
-                    icon: ''
+                    icon: 'nested'
                   }
                 },
                 {
@@ -114,7 +114,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '角色列表',
-                    icon: ''
+                    icon: 'job'
                   }
                 }
               ]
@@ -128,7 +128,7 @@ const permission = {
               component: 'Layout',
               meta: {
                 title: '商品管理',
-                icon: ''
+                icon: 'money'
               },
               children: [
                 {
@@ -139,7 +139,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '商品列表',
-                    icon: ''
+                    icon: 'shopping'
                   }
                 },
                 {
@@ -150,7 +150,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '分类参数',
-                    icon: ''
+                    icon: 'redis'
                   }
                 },
                 {
@@ -161,7 +161,7 @@ const permission = {
                   hidden: true,
                   meta: {
                     title: '商品操作',
-                    icon: ''
+                    icon: 'select'
                   }
                 }
               ]
@@ -186,7 +186,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '订单列表',
-                    icon: ''
+                    icon: 'list'
                   }
                 }
               ]
@@ -211,7 +211,7 @@ const permission = {
                   hidden: false,
                   meta: {
                     title: '统计报表',
-                    icon: ''
+                    icon: 'chart'
                   }
                 }
               ]

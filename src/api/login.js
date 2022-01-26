@@ -2,7 +2,6 @@ import request from '@/utils/request'
 
 // 登录方法
 export const login = (data) => {
-  console.log(data)
   return request({
     url: 'private/v1/login',
     method: 'post',

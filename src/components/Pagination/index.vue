@@ -33,7 +33,7 @@ const props = defineProps({
   pageSizes: {
     type: Array,
     default() {
-      return [10, 20, 30, 50]
+      return [5, 10, 20, 50]
     }
   },
   // 移动端页码按钮的数量端默认值5
@@ -77,13 +77,13 @@ const pageSize = computed({
   }
 })
 function handleSizeChange(val) {
-  emit('pagination', { page: currentPage.value, limit: val })
+  emit('pagination', { pagenum: currentPage.value, pagesize: val })
   if (props.autoScroll) {
     scrollTo(0, 800)
   }
 }
 function handleCurrentChange(val) {
-  emit('pagination', { page: val, limit: pageSize.value })
+  emit('pagination', { pagenum: val, pagesize: pageSize.value })
   if (props.autoScroll) {
     scrollTo(0, 800)
   }

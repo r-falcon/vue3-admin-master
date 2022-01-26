@@ -1,12 +1,15 @@
 import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
 import createVitePlugins from './vite/plugins'
+// import vueJsx from '@vitejs/plugin-vue-jsx'
+// import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd())
   return {
-    plugins: createVitePlugins(env, command === 'build'),
+    // plugins: [createVitePlugins(env, command === 'build'), vue(), vueJsx()],
+    plugins: [createVitePlugins(env, command === 'build')],
     resolve: {
       // https://cn.vitejs.dev/config/#resolve-alias
       alias: {
