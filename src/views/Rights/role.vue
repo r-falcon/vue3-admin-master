@@ -12,7 +12,7 @@
             :class="['bdbottom', index1 === 0 ? 'bdtop' : '', 'vcenter']"
           >
             <el-col :span="5">
-              <el-tag closable>{{ item1.authName }}</el-tag>
+              <el-tag closable @close="deleteRolebyId(props.row.id,item1.id)">{{ item1.authName }}</el-tag>
               <el-icon>
                 <CaretRight />
               </el-icon>
@@ -25,14 +25,14 @@
                 :class="[index2 === 0 ? '' : 'bdtop', 'vcenter']"
               >
                 <el-col :span="6">
-                  <el-tag type="success" closable>{{ item2.authName }}</el-tag>
+                  <el-tag type="success" closable @close="deleteRolebyId(props.row.id,item2.id)">{{ item2.authName }}</el-tag>
                   <el-icon>
                     <CaretRight />
                   </el-icon>
                 </el-col>
 
                 <el-col :span="18">
-                  <el-tag type="warning" v-for="item3 in item2.children" :key="item3.id" closable>
+                  <el-tag type="warning" v-for="item3 in item2.children" :key="item3.id" closable @close="deleteRolebyId(props.row.id,item3.id)">
                     {{ item3.authName }}
                   </el-tag>
                 </el-col>
@@ -104,14 +104,12 @@ const getRowClass = ({ row, rowIndex }) => {
 
 // 新增
 const handleAdd = () => {
-  console.log('add');
   role.isAdd = true 
   role.add_visible = true
 }
 
 // 修改
 const handleEdit = record => {
-  console.log('edit', record);
   role.form = record
   role.isAdd = false 
   role.add_visible = true
@@ -130,11 +128,24 @@ const handleOptionCancel = () => {
 
 // 删除
 const handleDelete = async id => {
-  console.log('deleteId',id);
   try{
     const res = await deleteRole(id)
     if(res.meta.status === 200){
       ElMessage.success('删除成功')
+      getRoleList()
+    }
+  }catch(err){
+    console.log(err);
+  }
+}
+
+// 删除角色指定权限
+const deleteRolebyId = async (roleId,rightId) => {
+  console.log('click',roleId,rightId);
+  try{
+    const res = await delAppointRight(roleId,rightId)
+    if(res.meta.status === 200){
+      ElMessage.success(res.meta.msg)
       getRoleList()
     }
   }catch(err){
