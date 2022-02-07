@@ -15,7 +15,6 @@ const store = createStore({
     settings
   },
   getters
-});
-
+})
 
 export default store

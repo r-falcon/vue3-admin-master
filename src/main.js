@@ -39,6 +39,8 @@ import ImagePreview from '@/components/ImagePreview'
 import TreeSelect from '@/components/TreeSelect'
 // 字典标签组件
 import DictTag from '@/components/DictTag'
+// 状态管理
+import { createPinia } from 'pinia'
 
 const app = createApp(App)
 
@@ -63,6 +65,7 @@ app.use(router)
 app.use(store)
 app.use(plugins)
 app.use(elementIcons)
+app.use(createPinia())
 app.component('svg-icon', SvgIcon)
 
 directive(app)

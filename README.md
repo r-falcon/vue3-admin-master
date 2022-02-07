@@ -230,3 +230,121 @@ remove the file manually to continue.
 - 执行 git 命令`git clean -f .git/index.lock`
 
 `修改readme.md文件`
+
+### vue3 的 setup composition api + pinia
+
+- 安装 pinia `npm install pinia` or `yarn add pinia`
+- 挂载全局实例
+
+```js
+import { createPinia } from 'pinia'
+app.use(createPinia())
+```
+
+- src/store/demo.js 创建一个 store 实例.[两种写法：options api 和 setup].参考对应目录中相应例子的写法
+
+- 业务组件对 store 的调用
+
+```vue
+<template>
+  <div>
+    <h2>count component:</h2>
+    <p>count is: {{ count }}</p>
+    <p>doubleCount is: {{ doubleCount() }}</p>
+    <button @click="increment">add count</button>
+  </div>
+</template>
+
+<script setup>
+  import { storeToRefs } from 'pinia'
+  import { useCountStore } from '@/store/demo'
+
+  const { count } = storeToRefs(useCountStore())
+  const { increment, doubleCount } = useCountStore()
+</script>
+```
+
+- 重复打包问题 pinia 的代码分割机制是把引用它的页面和并打包，当 user 例子被多个页面所引用，user 就会重复打包。解决：全局注册 src/store 目录下创建一个入口文件 index.js，包含一个 registerStore()注册函数，作用是吧整个项目的 store 都提前注册好，最后把所有注册好的 store 挂载到 appStore 传出去
+
+```js
+import { useCountStore } from './demo'
+
+const appStore = {}
+export const registerStore = () => {
+  appStore.useCountStore = useCountStore()
+}
+
+export default appStore
+```
+
+总线注册
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import { createPinia } from 'pinia'
+import { registerStore } from '@/store'
+
+const app = createApp(App)
+
+app.use(createPinia())
+// 注册pinia状态管理库
+registerStore()
+
+app.mount('#app')
+```
+
+内部引用
+
+```vue
+// src/components/PiniaBasicSetup.vue
+<script setup lang="ts" name="component-PiniaBasicSetup">
+  import { storeToRefs } from 'pinia'
+  import appStore from '@/store'
+
+  // setup composition API模式
+  const { count } = storeToRefs(appStore.useCounterStoreForSetup)
+  const { increment, doubleCount } = appStore.useCounterStoreForSetup
+</script>
+
+<template>
+  <div class="box-styl">
+    <h1>Setup模式</h1>
+    <p class="section-box">
+      Pinia的state: count = <b>{{ count }}</b>
+    </p>
+    <p class="section-box">
+      Pinia的getters: doubleCount() = <b>{{ doubleCount() }}</b>
+    </p>
+    <div class="section-box">
+      <p>Pinia的action: increment()</p>
+      <button @click="increment">点我</button>
+    </div>
+  </div>
+</template>
+```
+
+打包解耦
+
+```js
+export default defineConfig(({ command }: ConfigEnv) => {
+  return {
+    // ...其他配置
+
+    build: {
+      // ...其他配置
+
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // 将pinia的全局库实例打包进vendor，避免和页面一起打包造成资源重复引入
+            if (id.includes(path.resolve(__dirname, '/src/store/index.ts'))) {
+              return 'vendor'
+            }
+          }
+        }
+      }
+    }
+  }
+})
+```

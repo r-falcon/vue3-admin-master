@@ -69,7 +69,7 @@ import Table from '@/components/Table/Table.vue'
 import OptionDialog from './edit.vue'
 import SetDialog from './set.vue';
 import { Refresh, Edit, Delete, Setting, InfoFilled } from '@element-plus/icons-vue'
-import { reactive, toRefs,ref,onMounted } from 'vue'
+import { reactive, toRefs,ref} from 'vue'
 import { getUsers, UpdateState, deleteUser } from './service'
 import { ElMessage } from 'element-plus'
 
