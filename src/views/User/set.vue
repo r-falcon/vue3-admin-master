@@ -55,7 +55,6 @@ const getRoles = () => {
   set.rid = ''
   if (set.roleList.length === 0) {
     roleData().then(res => {
-      console.log('111调用了');
       const roles = []
       res.data.forEach(item => {
         roles.push({
