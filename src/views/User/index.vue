@@ -9,6 +9,12 @@
     >
       <template #headerHandler>
         <div>
+          <el-input v-model="searchValue" placeholder="请输入搜索关键字" style="width:300px;">
+            <template #append>
+              <el-button :icon='Search' @click="handleSearch" />
+            </template>
+          </el-input>
+
           <el-button style="float: right" :icon="Refresh" @click="handleRefresh"></el-button>
           <el-button style="float: right; margin: 0 10px 10px 0" type="primary" @click="handleAdd"
             >+ 新增</el-button
@@ -68,7 +74,7 @@
 import Table from '@/components/Table/Table.vue'
 import OptionDialog from './edit.vue'
 import SetDialog from './set.vue';
-import { Refresh, Edit, Delete, Setting, InfoFilled } from '@element-plus/icons-vue'
+import { Refresh, Edit, Delete, Setting, InfoFilled,Search } from '@element-plus/icons-vue'
 import { reactive, toRefs,ref} from 'vue'
 import { getUsers, UpdateState, deleteUser } from './service'
 import { ElMessage } from 'element-plus'
@@ -76,6 +82,7 @@ import { ElMessage } from 'element-plus'
 
 const setRole = ref(null)
 const user = reactive({
+  searchValue:'',
   userData: [],
   total: 0,
   queryParams: {
@@ -133,6 +140,12 @@ const initList = async params => {
   }
 }
 initList(user.queryParams)
+
+// search功能
+const handleSearch = () => {
+  user.queryParams.query = user.searchValue 
+  initList(user.queryParams)
+}
 
 // switch开关变化
 const handleSwitchChange = async record => {
@@ -205,5 +218,5 @@ const handleRefresh = () => {
   location.reload()
 }
 
-const { userData, total, queryParams, userLabel, is_add, add_visible, edit_visible, set_visible, loading, form, setForm } = toRefs(user)
+const { searchValue,userData, total, queryParams, userLabel, is_add, add_visible, edit_visible, set_visible, loading, form, setForm } = toRefs(user)
 </script>

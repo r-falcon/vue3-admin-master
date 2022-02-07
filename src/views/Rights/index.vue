@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div style="margin:10px auto;">
-      <el-input placeholder="请输入搜索关键字" style="width:300px;">
+      <el-input v-model="searchValue" placeholder="请输入搜索关键字" style="width:300px;">
         <template #append>
-          <el-button :icon="Search"></el-button>
+          <el-button :icon="Search" @click="handleSearch" />
         </template>
       </el-input>
     </div>
@@ -47,7 +47,8 @@ const right = reactive({
       label: '等级',
       slotName: 'grade'
     }
-  ]
+  ],
+  searchValue:''
 })
 
 const getRightsList = async type => {
@@ -64,7 +65,12 @@ const getRightsList = async type => {
   }
 }
 
+const handleSearch = () => {
+  console.log('search');
+  console.log(right.searchValue);
+}
+
 getRightsList('list')
 
-const { loading, rightsList, rightLabel } = toRefs(right)
+const { loading, rightsList, rightLabel,searchValue } = toRefs(right)
 </script>
