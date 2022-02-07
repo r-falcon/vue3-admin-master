@@ -1,13 +1,5 @@
 <template>
   <div class="app-container">
-    <div style="margin:10px auto;">
-      <el-input v-model="searchValue" placeholder="请输入搜索关键字" style="width:300px;">
-        <template #append>
-          <el-button :icon="Search" @click="handleSearch" />
-        </template>
-      </el-input>
-    </div>
-
     <Table
       :tableData="rightsList"
       :loading="loading"
@@ -15,6 +7,16 @@
       :border="true"
       :showIndexColumn="true"
     >
+      <template #headerHandler>
+        <div style="margin:10px auto;">
+          <el-input v-model="searchValue" placeholder="请输入搜索关键字" style="width: 300px">
+            <template #append>
+              <el-button :icon="Search" @click="handleSearch" />
+            </template>
+          </el-input>
+        </div>
+      </template>
+
       <template v-slot:grade="slotData">
         <el-tag v-if="slotData.data.row.level === '0'">一级</el-tag>
         <el-tag v-else-if="slotData.data.row.level === '1'" type="success">二级</el-tag>
@@ -48,7 +50,7 @@ const right = reactive({
       slotName: 'grade'
     }
   ],
-  searchValue:''
+  searchValue: ''
 })
 
 const getRightsList = async type => {
@@ -72,5 +74,5 @@ const handleSearch = () => {
 
 getRightsList('list')
 
-const { loading, rightsList, rightLabel,searchValue } = toRefs(right)
+const { loading, rightsList, rightLabel, searchValue } = toRefs(right)
 </script>

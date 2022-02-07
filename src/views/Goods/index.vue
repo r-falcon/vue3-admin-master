@@ -7,8 +7,36 @@
       :border="true"
       :showIndexColumn="true"
     >
+      <template #headerHandler>
+        <div style="margin:10px auto;">
+          <el-input v-model="searchValue" placeholder="请输入搜索关键字" style="width:300px;">
+            <template #append>
+              <el-button :icon='Search' @click="handleSearch">
+              </el-button>
+            </template>
+          </el-input>
+
+          <el-button type='primary' style="float:right;" @click="handleAdd">+ 添加</el-button>
+        </div>
+      </template>
+
       <template v-slot:create="slotData">
         {{parseTime(slotData.data.row.add_time)}}
+      </template>
+
+      <template v-slot:option="slotData">
+        <el-button :icon="Edit" circle type="primary" @click="handleEdit(slotData.data.row)" />
+        <el-popconfirm
+          confirm-button-text="确认"
+          cancel-button-text="取消"
+          :icon="InfoFilled"
+          title="确定要删除该项吗"
+          @confirm="handleDelete(slotData.data.row.goods_id)"
+        >
+          <template #reference>
+            <el-button :icon='Delete' circle type='danger' />
+          </template>
+        </el-popconfirm>
       </template>
     </Table>
 
@@ -27,9 +55,12 @@ import { goodsList } from './service'
 import Table from '@/components/Table/Table.vue'
 import { reactive, toRefs } from 'vue'
 import { parseTime } from '@/utils/ruoyi'
+import {Search,Edit,Delete,Setting,InfoFilled} from '@element-plus/icons-vue'
 // import Basic from '@/components/PiniaBasic/Basic.vue'
 
+const router = useRouter()
 const goods = reactive({
+  searchValue:'',
   goodsData: [],
   total: 0,
   queryParams: {
@@ -59,6 +90,11 @@ const goods = reactive({
       label: '创建时间',
       slotName: 'create'
     },
+    {
+      label:'操作',
+      slotName:'option',
+      width:'220'
+    }
   ],
   loading: false
 })
@@ -75,10 +111,30 @@ const initList = async params => {
     goods.loading = false
     console.log(err);
   }
+}
 
+// search功能
+const handleSearch = () => {
+  goods.queryParams.query = goods.searchValue
+  initList(goods.queryParams)
+}
+
+// 新增、修改
+const handleAdd = () => {
+  router.push('gadd')
+}
+
+const handleEdit = record => {
+  router.push({path:'gadd',query:{goodsId:record.goods_id}})
+}
+
+// 删除
+const handleDelete = goodsId => {
+  console.log('delete');
+  console.log(goodsId);
 }
 
 initList(goods.queryParams)
 
-const { goodsData, total, queryParams, goodsLabel, loading } = toRefs(goods)
+const { searchValue,goodsData, total, queryParams, goodsLabel, loading } = toRefs(goods)
 </script>
