@@ -64,17 +64,19 @@
     </el-table>
 
     <OptionDialog :isAdd='isAdd' :optionVisible='add_visible' :formData='form' @optionSuccess="handleOptionSuccess" @optionCancel="handleOptionCancel" />
-    <SetDialog :setVisible='set_visible' @setSuccess="handleSetSuccess" @setCancel="handleSetCancel" />
+    <SetDialog ref="setRef" :setVisible='set_visible' @setSuccess="handleSetSuccess" @setCancel="handleSetCancel" />
   </div>
 </template>
 
 <script setup>
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs,ref } from 'vue'
 import { allRoles,deleteRole,delAppointRight } from './service'
 import { CaretRight, Edit, Delete, Setting, InfoFilled } from '@element-plus/icons-vue'
 import OptionDialog from './edit.vue'
 import SetDialog from './set.vue'
 import { ElMessage } from 'element-plus'
+
+const setRef = ref()
 
 let role = reactive({
   roleList: [],
@@ -155,16 +157,17 @@ const deleteRolebyId = async (roleId,rightId) => {
 
 // 分配
 const handleSet = record => {
-  console.log('set',record);
+  setRef.value.getRightList(record)
   role.set_visible = true
 }
 
 const handleSetSuccess = () => {
-  role.set_visible = true
+  role.set_visible = false
+  getRoleList()
 }
 
 const handleSetCancel = () => {
-  role.set_visible = true
+  role.set_visible = false
 }
 
 getRoleList()
