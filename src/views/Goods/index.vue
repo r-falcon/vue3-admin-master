@@ -47,15 +47,19 @@
       v-model:limit="queryParams.pagesize"
       @pagination="initList"
     />
+
+    <!-- 新特性体验 -->
+    <!-- <Basic /> -->
   </div>
 </template>
 
 <script setup>
-import { goodsList } from './service'
+import { goodsList,goodsDelete } from './service'
 import Table from '@/components/Table/Table.vue'
 import { reactive, toRefs } from 'vue'
 import { parseTime } from '@/utils/ruoyi'
 import {Search,Edit,Delete,Setting,InfoFilled} from '@element-plus/icons-vue'
+import {ElMessage} from 'element-plus'
 // import Basic from '@/components/PiniaBasic/Basic.vue'
 
 const router = useRouter()
@@ -106,7 +110,6 @@ const initList = async params => {
     goods.loading = false
     goods.goodsData = res.data?.goods ?? []
     goods.total = res.data?.total ?? 0
-    console.log(goods);
   } catch (err) {
     goods.loading = false
     console.log(err);
@@ -129,9 +132,16 @@ const handleEdit = record => {
 }
 
 // 删除
-const handleDelete = goodsId => {
-  console.log('delete');
-  console.log(goodsId);
+const handleDelete = async goodsId => {
+  try{
+    const res = await goodsDelete(goodsId)
+    if(res.meta.status === 200){
+      ElMessage.success(res.meta.msg)
+      initList(goods.queryParams)
+    }
+  }catch(err){
+    console.log(err);
+  }
 }
 
 initList(goods.queryParams)

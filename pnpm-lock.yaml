@@ -35,6 +35,7 @@ specifiers:
   vue-cropper: 1.0.2
   vue-router: 4.0.12
   vuex: 4.0.2
+  wangEditor: npm:wangeditor@^4.7.11
   yarn: ^1.22.17
 
 dependencies:
@@ -53,6 +54,7 @@ dependencies:
   vue-cropper: registry.npmmirror.com/vue-cropper/1.0.2
   vue-router: registry.npmmirror.com/vue-router/4.0.12_vue@3.2.26
   vuex: registry.npmmirror.com/vuex/4.0.2_vue@3.2.26
+  wangEditor: registry.npmmirror.com/wangeditor/4.7.11
   yarn: registry.npmmirror.com/yarn/1.22.17
 
 devDependencies:
@@ -411,6 +413,25 @@ packages:
       '@babel/plugin-syntax-typescript': registry.npmmirror.com/@babel/plugin-syntax-typescript/7.16.7_@babel+core@7.17.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  registry.npmmirror.com/@babel/runtime-corejs3/7.17.0:
+    resolution: {integrity: sha512-qeydncU80ravKzovVncW3EYaC1ji3GpntdPgNcJy9g7hHSY6KX+ne1cbV3ov7Zzm4F1z0+QreZPCuw1ynkmYNg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/runtime-corejs3/-/runtime-corejs3-7.17.0.tgz}
+    name: '@babel/runtime-corejs3'
+    version: 7.17.0
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      core-js-pure: registry.npmmirror.com/core-js-pure/3.21.0
+      regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.9
+    dev: false
+
+  registry.npmmirror.com/@babel/runtime/7.17.0:
+    resolution: {integrity: sha512-etcO/ohMNaNA2UBdaXBBSX/3aEzFMRrVfaPv8Ptc0k+cWpWW0QFiGZ2XnVqQZI1Cf734LbPGmqBKWESfW4x/dQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/runtime/-/runtime-7.17.0.tgz}
+    name: '@babel/runtime'
+    version: 7.17.0
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.9
     dev: false
 
   registry.npmmirror.com/@babel/template/7.16.7:
@@ -1775,6 +1796,13 @@ packages:
     version: 0.1.1
     engines: {node: '>=0.10.0'}
     dev: true
+
+  registry.npmmirror.com/core-js-pure/3.21.0:
+    resolution: {integrity: sha512-VaJUunCZLnxuDbo1rNOzwbet9E1K9joiXS5+DQMPtgxd24wfsZbJZMMfQLGYMlCUvSxLfsRUUhoOR2x28mFfeg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/core-js-pure/-/core-js-pure-3.21.0.tgz}
+    name: core-js-pure
+    version: 3.21.0
+    requiresBuild: true
+    dev: false
 
   registry.npmmirror.com/cors/2.8.5:
     resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cors/-/cors-2.8.5.tgz}
@@ -4581,6 +4609,12 @@ packages:
       strip-indent: registry.npmmirror.com/strip-indent/3.0.0
     dev: true
 
+  registry.npmmirror.com/regenerator-runtime/0.13.9:
+    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz}
+    name: regenerator-runtime
+    version: 0.13.9
+    dev: false
+
   registry.npmmirror.com/regex-not/1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regex-not/-/regex-not-1.0.2.tgz}
     name: regex-not
@@ -5374,7 +5408,6 @@ packages:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tslib/-/tslib-2.3.1.tgz}
     name: tslib
     version: 2.3.1
-    dev: true
 
   registry.npmmirror.com/type-check/0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/type-check/-/type-check-0.4.0.tgz}
@@ -5715,6 +5748,16 @@ packages:
     dependencies:
       '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.0.0-beta.21.1
       vue: registry.npmmirror.com/vue/3.2.26
+    dev: false
+
+  registry.npmmirror.com/wangeditor/4.7.11:
+    resolution: {integrity: sha512-z6xEHTSj4YgqvQkHWh9/V/Md7hjEKchXquwvtxvWhwlMS/wBFprCg7qgE4omzuSBeivkZZGTJP08pmdHzOwCUQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/wangeditor/-/wangeditor-4.7.11.tgz}
+    name: wangeditor
+    version: 4.7.11
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.17.0
+      '@babel/runtime-corejs3': registry.npmmirror.com/@babel/runtime-corejs3/7.17.0
+      tslib: registry.npmmirror.com/tslib/2.3.1
     dev: false
 
   registry.npmmirror.com/webpack-virtual-modules/0.4.3:
