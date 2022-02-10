@@ -51,9 +51,6 @@
 /**
  * el-table 的二次封装
  */
-
-import { defineProps, defineEmits } from 'vue'
-
 defineProps({
   showSelectColumn: {
     type: Boolean,

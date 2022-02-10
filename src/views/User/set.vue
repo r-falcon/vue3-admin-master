@@ -27,7 +27,7 @@
 
 <script setup>
 import { ElMessage } from 'element-plus'
-import { defineProps, defineEmits, reactive, computed, toRefs, defineExpose } from 'vue'
+import { reactive, computed, toRefs} from 'vue'
 import { setUser, roleData } from './service'
 
 const props = defineProps({

@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { defineProps, reactive, defineEmits, toRefs, defineExpose, ref } from 'vue'
+import { reactive, toRefs,ref } from 'vue'
 import { allRights, roleById, attributeRole } from './service'
 import {ElMessage} from 'element-plus'
 

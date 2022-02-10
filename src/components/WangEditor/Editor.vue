@@ -4,7 +4,7 @@
 
 <script setup>
 import WangEditor from 'wangEditor'
-import { onMounted, onBeforeUnmount,defineProps,defineEmits } from 'vue'
+import { onMounted, onBeforeUnmount} from 'vue'
 
 const editor = ref()
 let instance = ''

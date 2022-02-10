@@ -20,7 +20,7 @@
 
 <script setup>
 import { ElMessage } from 'element-plus'
-import { defineProps, computed, getCurrentInstance, defineEmits } from 'vue'
+import { computed, getCurrentInstance } from 'vue'
 const { proxy } = getCurrentInstance()
 const emit = defineEmits(['optionSuccess', 'optionCancel'])
 import { addRole, editRole } from './service'

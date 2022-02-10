@@ -29,7 +29,7 @@
 
 <script setup>
 import { ElMessage } from 'element-plus'
-import { defineProps, reactive,defineEmits, computed } from 'vue'
+import { reactive,computed } from 'vue'
 import { addUser,editUser } from './service'
 const { proxy } = getCurrentInstance();
 
