@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <div id="div1" class="chartStyle"></div>
+    <div>update files</div>
   </div>
 </template>
 
