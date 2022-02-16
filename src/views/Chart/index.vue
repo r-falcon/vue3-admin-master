@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <div id="div1" style="width: 100%; height: 400px"></div>
+    <div id="div1" class="chartStyle"></div>
   </div>
 </template>
 
@@ -47,3 +47,10 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+.chartStyle{
+  width: 100%; 
+  height: 400px;
+}
+</style>
