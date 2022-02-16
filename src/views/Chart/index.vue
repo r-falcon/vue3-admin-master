@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <div id="div1" class="chartStyle"></div>
+    <div>123456</div>
   </div>
 </template>
 
