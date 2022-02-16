@@ -119,6 +119,8 @@ QQ 群： [![加入QQ群](https://img.shields.io/badge/已满-937441-blue.svg)](
 
 `yarn build:prod`
 
+eslint+prettierrc+husky+commitlint :[https://juejin.cn/post/7038143752036155428]
+
 ### 代码风格约束
 
 首先安装几个安装包：
@@ -256,11 +258,11 @@ app.use(createPinia())
 </template>
 
 <script setup>
-  import { storeToRefs } from 'pinia'
-  import { useCountStore } from '@/store/demo'
+import { storeToRefs } from 'pinia'
+import { useCountStore } from '@/store/demo'
 
-  const { count } = storeToRefs(useCountStore())
-  const { increment, doubleCount } = useCountStore()
+const { count } = storeToRefs(useCountStore())
+const { increment, doubleCount } = useCountStore()
 </script>
 ```
 
@@ -299,12 +301,12 @@ app.mount('#app')
 ```vue
 // src/components/PiniaBasicSetup.vue
 <script setup lang="ts" name="component-PiniaBasicSetup">
-  import { storeToRefs } from 'pinia'
-  import appStore from '@/store'
+import { storeToRefs } from 'pinia'
+import appStore from '@/store'
 
-  // setup composition API模式
-  const { count } = storeToRefs(appStore.useCounterStoreForSetup)
-  const { increment, doubleCount } = appStore.useCounterStoreForSetup
+// setup composition API模式
+const { count } = storeToRefs(appStore.useCounterStoreForSetup)
+const { increment, doubleCount } = appStore.useCounterStoreForSetup
 </script>
 
 <template>
