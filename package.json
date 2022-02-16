@@ -8,7 +8,9 @@
     "dev": "vite",
     "build:prod": "vite build",
     "build:stage": "vite build --mode staging",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -35,8 +37,19 @@
     "yarn": "^1.22.17"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^16.2.1",
     "@vitejs/plugin-vue": "1.9.4",
     "@vue/compiler-sfc": "3.2.22",
+    "commitizen": "^4.2.4",
+    "commitlint": "^16.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.4.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
     "sass": "1.45.0",
     "unplugin-auto-import": "0.5.3",
     "vite": "2.6.14",
@@ -48,5 +61,7 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "main": ".eslintrc.js",
+  "keywords": []
 }
