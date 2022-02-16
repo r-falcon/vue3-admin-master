@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <div id="div1" class="chartStyle"></div>
-    <div>add something for commit </div>
   </div>
 </template>
 
