@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <div id="div1" class="chartStyle"></div>
+    <div>123</div>
   </div>
 </template>
 
@@ -20,37 +21,37 @@ onMounted(async () => {
           axisPointer: {
             type: 'cross',
             label: {
-              backgroundColor: '#6a7985',
-            },
-          },
+              backgroundColor: '#6a7985'
+            }
+          }
         },
         legend: res.data.legend,
         toolbox: {
           feature: {
-            saveAsImage: {},
-          },
+            saveAsImage: {}
+          }
         },
         grid: {
           left: '3%',
           right: '4%',
           bottom: '3%',
-          containLabel: true,
+          containLabel: true
         },
         xAxis: res.data.xAxis,
         yAxis: res.data.yAxis,
-        series: res.data.series,
+        series: res.data.series
       }
       myChart.setOption(option)
     }
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 })
 </script>
 
 <style scoped>
-.chartStyle{
-  width: 100%; 
+.chartStyle {
+  width: 100%;
   height: 400px;
 }
 </style>
