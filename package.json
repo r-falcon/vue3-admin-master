@@ -8,9 +8,7 @@
     "dev": "vite",
     "build:prod": "vite build",
     "build:stage": "vite build --mode staging",
-    "preview": "vite preview",
-    "prepare": "husky install",
-    "commit": "git-cz"
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -37,32 +35,14 @@
     "yarn": "^1.22.17"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^16.2.1",
     "@vitejs/plugin-vue": "1.9.4",
     "@vue/compiler-sfc": "3.2.22",
-    "commitizen": "^4.2.4",
-    "commitlint": "^16.2.1",
-    "commitlint-config-cz": "^0.13.3",
-    "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^6.3.0",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.4.1",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.4",
-    "prettier": "^2.5.1",
     "sass": "1.45.0",
     "unplugin-auto-import": "0.5.3",
     "vite": "2.6.14",
     "vite-plugin-compression": "0.3.6",
     "vite-plugin-svg-icons": "1.0.5",
     "vite-plugin-vue-setup-extend": "0.1.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
   },
   "main": ".eslintrc.js",
   "keywords": []

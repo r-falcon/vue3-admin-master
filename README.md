@@ -121,6 +121,8 @@ QQ 群： [![加入QQ群](https://img.shields.io/badge/已满-937441-blue.svg)](
 
 eslint+prettierrc+husky+commitlint :[https://juejin.cn/post/7038143752036155428]
 
+## 代码风格约束+git 提交规范，参考本 git 中 lint-test 的配置流程
+
 ### 代码风格约束
 
 首先安装几个安装包：
