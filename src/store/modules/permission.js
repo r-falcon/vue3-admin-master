@@ -38,7 +38,7 @@ const permission = {
   actions: {
     // 生成路由
     GenerateRoutes({ commit }) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         // 向后端请求路由数据
         // getRouters().then(res => {
         //   const sdata = JSON.parse(JSON.stringify(res.data))
@@ -215,6 +215,31 @@ const permission = {
                   }
                 }
               ]
+            },
+
+            // 状态管理
+            {
+              name: 'Pinia',
+              path: '/pinia',
+              redirect: 'noRedirect',
+              component: 'Layout',
+              meta: {
+                title: 'pinia样例',
+                icon: ''
+              },
+              children: [
+                {
+                  name: 'Demo',
+                  path: 'demo',
+                  redirect: null,
+                  component: 'Pinia/index',
+                  hidden: false,
+                  meta: {
+                    title: 'Pinia示例',
+                    icon: 'form'
+                  }
+                }
+              ]
             }
           ]
           // data: [
@@ -269,7 +294,7 @@ const permission = {
 
 // 遍历后台传来的路由字符串，转换为组件对象
 export function filterAsyncRouter(asyncRouterMap) {
-  return asyncRouterMap.filter((route) => {
+  return asyncRouterMap.filter(route => {
     if (route.component) {
       // Layout组件特殊处理
       if (route.component === 'Layout') {
@@ -336,7 +361,7 @@ export function filterAsyncRouter(asyncRouterMap) {
 //   return children
 // }
 
-export const loadView = (view) => {
+export const loadView = view => {
   let res
   for (const path in modules) {
     const dir = path.split('views/')[1].split('.vue')[0]
